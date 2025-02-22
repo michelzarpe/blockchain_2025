@@ -22,13 +22,36 @@ contract VariavelDeEstavel {
 
     // como declarar uma string em solidity
     string public nome = "Lucas";
+    bytes2 public byte2 = 0x1AF1;
+    bytes3 public byte3 = 0x1AF122;
+    address public endereco = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    bool public ativo = true;
+    int public numero = -10;
 
+    //concateção de strings
+    string public nome1 = "Lucas";
+    string public nome2 = "Silva";
+    string public nome3 = string(abi.encodePacked(nome1, " ", nome2));
+    string public nome4 = string.concat(nome1, " ", nome2);
 
     //vsiibilidade de função
     // public: todos podem chamar
     // internal: somente o contrato e contratos derivados (herança) podem chamar
     // private: somente o contrato pode chamar
     // external: somente contratos externos podem chamar
+
+    // constant e immmutable
+    // constant: não altera o estado do contrato
+    // immutable: não altera o estado do contrato, mas pode ser alterado no momento da criação do contrato
+
+    string public constant nomeConstante = "Lucas";
+    int public immutable saldoInicial;
+
+    constructor(string memory _nome, int _saldo) {
+        nome = _nome;
+        saldoInicial = _saldo;
+        //executado uma vez quando o contrato é criado
+    }
 
     //não gera uma transação
     function pegarSaldo() public view returns(uint256) {
@@ -90,6 +113,24 @@ contract VariavelDeEstavel {
     function getNome() public view returns(string memory) {
         return nome;
     }
+
+    //pega saldo de um endereco
+    function getSaldo(address _endereco) public view returns(uint256) {
+        return _endereco.balance;
+    }
+
+    // pega saldo do contrato
+    function getSaldoContrato() public view returns(uint256) {
+        return address(this).balance;
+    }
+
+    // transferir saldo para outro endereco
+    function transferirSaldo(address _endereco, uint256 _valor) public {
+        require(saldo >= _valor, "Saldo insuficiente");
+        saldo -= _valor;
+        payable(_endereco).transfer(_valor);
+    }  
+    
 }
 
 
@@ -146,4 +187,44 @@ contract VariavelDeEstavel {
 // valor: int, uint, bool, address, fixed, ufixed
 // referencia: array, struct, mapping, string, bytes
 // exemplo referencia: uint[] memory array = new uint[](10);
+
+
+// byteX = bytes1, bytes2, bytes3, bytes4, bytes5, bytes6, bytes7, bytes8, bytes9, bytes10, bytes11, bytes12, bytes13, bytes14, bytes15, bytes16, bytes17, bytes18, bytes19, bytes20, bytes21, bytes22, bytes23, bytes24, bytes25, bytes26, bytes27, bytes28, bytes29, bytes30, bytes31, bytes32
+// address = 20 bytes
+
+
+// unicode
+// string public nome  = unicode"joão";
+// cada caracter unicode ocupa 2 bytes utf-8
+
+
+//address.balance = saldo do endereço
+//address.transfer = transferir saldo para outro endereço
+//address.send = transferir saldo para outro endereço
+//address.call = chamar uma função de um contrato
+//address.callcode = chamar uma função de um contrato
+//address.delegatecall = chamar uma função de um contrato
+//address.staticcall = chamar uma função de um contrato
+
+//msg.sender = endereço que chamou a função
+//msg.value = valor enviado para a função
+//msg.data = dados enviados para a função
+//msg.sig = assinatura da função
+//msg.gas = gas disponivel para a função
+//msg.gasprice = preço do gas
+//msg.data = dados enviados para a função
+//msg.sig = assinatura da função
+//msg.gas = gas disponivel para a função
+//msg.gasprice = preço do gas
+
+//block.coinbase = endereço do minerador
+//block.difficulty = dificuldade do bloco
+//block.gaslimit = limite de gas do bloco
+//block.number = numero do bloco
+//block.timestamp = timestamp do bloco
+
+//tx.origin = endereço que originou a transação
+//tx.gasprice = preço do gas
+//tx.origin = endereço que originou a transação
+//tx.gasprice = preço do gas
 // ----------------------------------------------------------
