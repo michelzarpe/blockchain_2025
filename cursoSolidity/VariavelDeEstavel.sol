@@ -228,3 +228,7 @@ contract VariavelDeEstavel {
 //tx.origin = endereço que originou a transação
 //tx.gasprice = preço do gas
 // ----------------------------------------------------------
+
+// contrato só tem endereço
+// chave privada -> chave publica -> endereço
+// ----------------------------------------------------------
