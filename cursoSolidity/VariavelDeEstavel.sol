@@ -58,7 +58,7 @@ contract VariavelDeEstavel {
         nome = _nome;
         saldoInicial = _saldo;
         status = Status.Ativo;
-        saldo[msg.sender] = _saldo;
+        saldo[msg.sender] = _saldo; // msg.sender é o endereço que chamou o contrato
         //executado uma vez quando o contrato é criado
     }
 
@@ -264,3 +264,8 @@ contract VariavelDeEstavel {
 ]
 
  */
+
+// msg.sender endereco que chamou o contrato/transação
+// address(this) endereco do contrato
+// payable(_endereco).transfer(_valor) transferir saldo para outro endereco
+// require(saldo >= _valor, "Saldo insuficiente") verificar se tem saldo suficiente
