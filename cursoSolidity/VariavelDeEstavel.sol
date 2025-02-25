@@ -57,6 +57,8 @@ contract VariavelDeEstavel {
     address[] public enderecos;
     // array estatico de endereços com 10 posições
     address[10] public enderecosEstatico;
+
+    string[] public nomes = ["Lucas", "Silva", "Santos"];
     
     
     constructor(string memory _nome, int _saldo) {
