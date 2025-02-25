@@ -50,10 +50,15 @@ contract VariavelDeEstavel {
     string public constant nomeConstante = "Lucas";
     int public immutable saldoInicial;
 
+    // variavel mapping, mapping(chave => valor) nome
+    mapping(address => uint256) public saldo;
+    
+    
     constructor(string memory _nome, int _saldo) {
         nome = _nome;
         saldoInicial = _saldo;
         status = Status.Ativo;
+        saldo[msg.sender] = _saldo;
         //executado uma vez quando o contrato é criado
     }
 
