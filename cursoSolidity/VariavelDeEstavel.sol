@@ -28,6 +28,9 @@ contract VariavelDeEstavel {
     bool public ativo = true;
     int public numero = -10;
 
+    enum Status {Ativo, Inativo}
+    Status public status;
+
     //concateção de strings
     string public nome1 = "Lucas";
     string public nome2 = "Silva";
@@ -50,6 +53,7 @@ contract VariavelDeEstavel {
     constructor(string memory _nome, int _saldo) {
         nome = _nome;
         saldoInicial = _saldo;
+        status = Status.Ativo;
         //executado uma vez quando o contrato é criado
     }
 
@@ -68,6 +72,7 @@ contract VariavelDeEstavel {
     }
 
     function subtracao(uint256 _valor) private {
+        status = Status.Inativo;
         saldo -= _valor;
     }
 
@@ -232,3 +237,25 @@ contract VariavelDeEstavel {
 // contrato só tem endereço
 // chave privada -> chave publica -> endereço
 // ----------------------------------------------------------
+
+// endereço contrato: 0x3853E041FAC154ad54fde8d015Ca9B87eE0e803f
+//
+// abi
+/**
+[
+	{
+		"inputs": [],
+		"name": "valor",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+ */
