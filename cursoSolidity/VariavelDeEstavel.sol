@@ -52,6 +52,11 @@ contract VariavelDeEstavel {
 
     // variavel mapping, mapping(chave => valor) nome
     mapping(address => uint256) public saldo;
+
+    // array de endereços dinamico
+    address[] public enderecos;
+    // array estatico de endereços com 10 posições
+    address[10] public enderecosEstatico;
     
     
     constructor(string memory _nome, int _saldo) {
