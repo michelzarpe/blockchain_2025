@@ -322,3 +322,10 @@ contract VariavelDeEstavel {
 // address(this) endereco do contrato
 // payable(_endereco).transfer(_valor) transferir saldo para outro endereco
 // require(saldo >= _valor, "Saldo insuficiente") verificar se tem saldo suficiente
+
+//mve maquina virtual ethereum
+// possui 4 locais de armazenamento
+// 1. storage: armazena variaveis de estado
+// 2. memory: armazena variaveis temporarias
+// 3. stack: armazena variaveis locais
+// 4. calldata: armazena dados de chamada (qual funcao foi chamada e parametros)
