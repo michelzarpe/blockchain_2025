@@ -125,6 +125,20 @@ contract VariavelDeEstavel {
         saldo = _saldo;
     }
 
+    //setNome
+    function setNome1(string memory _nome) public {
+        nome = _"X";
+        nome = _nome;
+    }
+
+    //calldata gasta menos gas
+    //calldata como se fosse um ponteiro e nao pode alterar o ponteiro
+    function setNome1(string calldata _nome) public {
+        //nome = _"X"; nao pode isso
+        nome = _nome;
+    }
+
+
     function soma(uint256 _valor) external {
         saldo += _valor;
     }
@@ -325,7 +339,11 @@ contract VariavelDeEstavel {
 
 //mve maquina virtual ethereum
 // possui 4 locais de armazenamento
-// 1. storage: armazena variaveis de estado
+// 1. storage: armazena variaveis de estado. Sempre apontar para uma storage e nunca para outro tipo. 
 // 2. memory: armazena variaveis temporarias
 // 3. stack: armazena variaveis locais
-// 4. calldata: armazena dados de chamada (qual funcao foi chamada e parametros)
+// 4. calldata: armazena dados de chamada (qual funcao foi chamada e parametros). Sempre apontar para calldata.
+
+//calldata: 0x477e4020000000000000000000000000000000000000000000000000000000000000c
+//calldata: 477e4020 = assinatura da função
+//parametros da função:0000000000000000000000000000000000000000000000000000000000000c 
