@@ -22,19 +22,28 @@ contract VariavelDeEstavel {
 
     // como declarar uma string em solidity
     string public nome = "Lucas";
+    
     bytes2 public byte2 = 0x1AF1;
+    
     bytes3 public byte3 = 0x1AF122;
+    
     address public endereco = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    
     bool public ativo = true;
+    
     int public numero = -10;
 
     enum Status {Ativo, Inativo}
+    
     Status public status;
 
     //concateção de strings
     string public nome1 = "Lucas";
+    
     string public nome2 = "Silva";
+    
     string public nome3 = string(abi.encodePacked(nome1, " ", nome2));
+    
     string public nome4 = string.concat(nome1, " ", nome2);
 
     //vsiibilidade de função
@@ -48,25 +57,55 @@ contract VariavelDeEstavel {
     // immutable: não altera o estado do contrato, mas pode ser alterado no momento da criação do contrato
 
     string public constant nomeConstante = "Lucas";
+    
     int public immutable saldoInicial;
-
     // variavel mapping, mapping(chave => valor) nome
     mapping(address => uint256) public saldo;
-
     // array de endereços dinamico
     address[] public enderecos;
     // array estatico de endereços com 10 posições
     address[10] public enderecosEstatico;
 
     string[] public nomes = ["Lucas", "Silva", "Santos"];
-    
-    
+
+    uint256[] public valores = new uint256[](10); // array dinamico de uint256 com 10 posições e o valor padrão do tipo da variavel
+        
     constructor(string memory _nome, int _saldo) {
         nome = _nome;
         saldoInicial = _saldo;
         status = Status.Ativo;
         saldo[msg.sender] = _saldo; // msg.sender é o endereço que chamou o contrato
         //executado uma vez quando o contrato é criado
+    }
+
+    //funcao que adiciona nome
+    function adicionarNome(string memory _nome) public {
+        nomes.push(_nome);
+    }
+
+    //funcao que retorna um nome
+    function getNome(uint256 _index) public view returns(string memory) {
+        return nomes[_index];
+    }
+
+    //funcao que deleta um nome
+    function deletarNome(uint256 _index) public {
+        delete nomes[_index];
+    }
+
+    //funcao que retorna o tamanho do array
+    function getTamanhoArray() public view returns(uint256) {
+        return nomes.length;
+    }
+
+    //funcao que deleta um nome com pop
+    function deletarNomePop() public {
+        nomes.pop();
+    }
+
+    //função que retorna um array de endereços
+    function getArray() public view returns(address[] memory) {
+        return enderecos;
     }
 
     //não gera uma transação
