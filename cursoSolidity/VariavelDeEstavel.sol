@@ -68,6 +68,13 @@ contract VariavelDeEstavel {
 
     string[] public nomes = ["Lucas", "Silva", "Santos"];
 
+    //bytes
+    bytes public bytes1 = "Lucas"; // é um array dinamico
+
+    string[] memory public nomes1 = ["Lucas", "Silva", "Santos"];
+
+    uint32[] public numeros = [uint(1), 2, 3, 4, 5];
+
     uint256[] public valores = new uint256[](10); // array dinamico de uint256 com 10 posições e o valor padrão do tipo da variavel
         
     constructor(string memory _nome, int _saldo) {
